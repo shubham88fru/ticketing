@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2lpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/* # Path to dir when k8s manifests reside
+build:
+  local:
+    push: false # Don't build local image builds to dockerhub, which is default behavior
+  artifacts:
+    - image: thewolverine/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync: # look for changes in file at
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
