@@ -6,7 +6,7 @@ deploy:
       - ./infra/k8s/* # Path to dir when k8s manifests reside
 build:
   local:
-    push: false # Don't build local image builds to dockerhub, which is default behavior
+    push: false # Don't push local image builds to dockerhub, which is default behavior
   artifacts:
     - image: thewolverine/auth
       context: auth
