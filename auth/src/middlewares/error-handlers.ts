@@ -14,9 +14,21 @@ export const errorHandler = (
     });
     return res.status(400).send({ errors: formattedErrors });
   }
-  if (err instanceof DatabaseConnectionError) console.log('Databse conn errr');
+  if (err instanceof DatabaseConnectionError) {
+    return res.status(500).send({
+      errors: [
+        {
+          message: err.message,
+        },
+      ],
+    });
+  }
 
   res.status(400).send({
-    message: err.message,
+    errors: [
+      {
+        message: 'Something went wrong',
+      },
+    ],
   });
 };
