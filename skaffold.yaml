@@ -3,7 +3,7 @@ kind: Config
 deploy:
   kubectl:
     manifests:
-      - ./infra/k8s/* # Path to dir when k8s manifests reside
+      - ./infra/k8s/* # Path to dir where k8s manifests reside
 build:
   local:
     push: false # Don't push local image builds to dockerhub, which is default behavior
