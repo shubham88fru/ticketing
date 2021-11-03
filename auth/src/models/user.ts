@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { Password } from '../services/password';
 
 // describes the properties needed
 // to create a new User.
@@ -29,6 +30,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+});
+
+// Runs everytime before we save a document.
+userSchema.pre('save', async function (done) {
+  if (this.isModified('password')) {
+    const hashed = await Password.toHash(this.get('password'));
+    this.set('password', hashed);
+  }
+
+  done();
 });
 
 // Add custom method build to schema
