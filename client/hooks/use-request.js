@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-export default ({ url, method, body }) => {
+export default ({ url, method, body, onSuccess }) => {
   //method - GET, POST, PUT etc
   const [errors, setErrors] = useState(null);
 
@@ -9,6 +9,7 @@ export default ({ url, method, body }) => {
     try {
       setErrors(null);
       const response = await axios[method](url, body);
+      if (onSuccess) onSuccess(response.data);
       return response.data;
     } catch (err) {
       setErrors(
