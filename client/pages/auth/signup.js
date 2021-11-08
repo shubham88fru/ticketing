@@ -16,7 +16,7 @@ export default () => {
   });
 
   const onSubmit = async (event) => {
-    event.prevenDefault();
+    event.preventDefault();
     doRequest();
   };
 
