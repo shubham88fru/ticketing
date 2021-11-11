@@ -24,3 +24,11 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
+    - image: thewolverine/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync: # look for changes in file at
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
