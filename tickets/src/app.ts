@@ -5,6 +5,7 @@ import cookieSession from 'cookie-session';
 
 import { errorHandler, NotFoundError, currentUser } from '@wolvtickets/common';
 import { createTicketRouter } from './routes/new';
+import { showTicketRouter } from './routes/show';
 
 const app = express();
 app.set('trust proxy', true); // Trust https connection being proxies from ingress
@@ -16,6 +17,7 @@ app.use(
 );
 app.use(currentUser);
 app.use(createTicketRouter);
+app.use(showTicketRouter);
 
 // Fallback for all non existent errors
 app.all('*', async (req, res) => {
