@@ -11,6 +11,7 @@ export const errorHandler = (
     return res.status(err.statusCode).send({ errors: err.serializeErrors() });
   }
 
+  console.error('Some un-expected error occurred', err);
   res.status(400).send({
     errors: [
       {
