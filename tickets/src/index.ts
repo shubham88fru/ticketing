@@ -1,6 +1,6 @@
 import { app } from './app';
 import mongoose from 'mongoose';
-import { natsWrapper } from './nats-wrappert';
+import { natsWrapper } from './nats-wrapper';
 
 const start = async () => {
   if (!process.env.JWT_KEY) {

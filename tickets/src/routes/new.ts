@@ -3,7 +3,7 @@ import { body } from 'express-validator';
 import { Ticket } from '../models/ticket';
 import { requireAuth, validateRequest } from '@wolvtickets/common';
 import { TicketCreatedPublisher } from '../events/publishers/ticket-created-publisher';
-import { natsWrapper } from '../nats-wrappert';
+import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
 
