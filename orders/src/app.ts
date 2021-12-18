@@ -10,7 +10,7 @@ import { newOrderRouter } from './routes/new';
 import { indexOrderRouter } from './routes';
 
 const app = express();
-app.set('trust proxy', true); // Trust https connection being proxies from ingress
+app.set('trust proxy', true); // Trust https connection being proxied from ingress
 
 // Middlewares
 app.use(json());
