@@ -1,17 +1,18 @@
-import mongoose, { mongo } from 'mongoose';
+import mongoose from 'mongoose';
+import { OrderStatus } from '@wolvtickets/common';
 
 interface OrdersAttrs {
   userId: string;
-  status: string;
+  status: OrderStatus;
   expiresAt: Date;
-  ticket: TicketDoc;
+  //ticket: TicketDoc;
 }
 
 interface OrderDoc extends mongoose.Document {
   userId: string;
-  status: string;
+  status: OrderStatus;
   expiresAt: Date;
-  ticket: TicketDoc;
+  //ticket: TicketDoc;
 }
 
 interface OrderModel extends mongoose.Model<OrderDoc> {
@@ -27,6 +28,8 @@ const orderSchema = new mongoose.Schema(
     status: {
       type: String,
       required: true,
+      enum: Object.values(OrderStatus),
+      default: OrderStatus.Created,
     },
     expriesAt: {
       type: mongoose.Schema.Types.Date,
