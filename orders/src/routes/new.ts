@@ -3,6 +3,7 @@ import {
   NotFoundError,
   requireAuth,
   validateRequest,
+  BadRequestError,
 } from '@wolvtickets/common';
 import { body } from 'express-validator';
 import mongoose from 'mongoose';
@@ -33,7 +34,14 @@ router.post(
     }
 
     // Make sure that this ticket is not already reserved.
-
+    // Run query to look at all orders and find an order
+    // where the ticket it the ticket we just found *AND* the order's
+    // status is *NOT* cancelled.
+    // If we find an order from that means the ticket *IS* reserved.
+    const isReserved = await ticket.isReserved();
+    if (isReserved) {
+      throw new BadRequestError('Ticket is already reserved.');
+    }
     // Calculate an expiration date for this order.
 
     // Build the order and save it to the database.
